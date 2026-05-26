@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Таблица</title>
+</head>
+<body>
+  <label>Введите число строк: <input type="number" id="rows"></label>
+  <button onclick="drawTable()">Рисовать</button>
+
+  <script>
+    'use strict';
+
+    function drawTable() {
+      const rows = parseInt(document.getElementById('rows').value, 10);
+
+      if (isNaN(rows) || rows <= 0) {
+        console.log('Введите положительное число строк');
+        return;
+      }
+
+      const sequence = ['dog', 'dog', 'dog', 'cat', 'cat'];
+      let index = 0;
+
+      for (let i = 0; i < rows; i++) {
+        let line = '';
+
+        for (let j = 0; j < 6; j++) {
+          line += sequence[index % sequence.length] + '\t';
+          index++;
+        }
+
+        console.log(line.trim());
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пенсионный калькулятор</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <form id="pensionForm">
+    <label>Возраст: <input type="number" id="age" required></label><br>
+    <label><input type="radio" name="gender" value="male" required> Мужской</label>
+    <label><input type="radio" name="gender" value="female" required> Женский</label><br>
+    <button type="submit">Рассчитать</button>
+    <br><br>
+    <textarea id="result" rows="4" cols="50" readonly></textarea>
+  </form>
+
+  <script>
+    document.getElementById("pensionForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const age = parseInt(document.getElementById("age").value);
+      const gender = document.querySelector('input[name="gender"]:checked')?.value;
+      const result = document.getElementById("result");
+
+      if (isNaN(age) || !gender) {
+        result.value = "Пожалуйста, введите все данные";
+        return;
+      }
+
+      let message = "Да кто ты такой?";
+
+      if (age >= 0 && age <= 17) {
+        message = "Вам работать ещё рано — учитесь";
+      } else if (
+        (gender === "male" && age >= 18 && age <= 59) ||
+        (gender === "female" && age >= 18 && age <= 54)
+      ) {
+        message = "Вам ещё работать и работать";
+      } else if (
+        (gender === "male" && age >= 60 && age <= 64) ||
+        (gender === "female" && age >= 55 && age <= 59)
+      ) {
+        message = "Скоро пенсия!";
+      } else if (
+        (gender === "male" && age > 65) ||
+        (gender === "female" && age > 60)
+      ) {
+        message = "Вам пора на пенсию";
+      }
+
+      result.value = message;
+    });
+  </script>
+</body>
+</html>

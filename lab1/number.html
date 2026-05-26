@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Ввод числа</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="../index.html" id="link">Получить число</a>
+
+  <script>
+    'use strict';
+
+    document.getElementById('link').addEventListener('click', function (event) {
+      event.preventDefault();
+
+      while (true) {
+        const input = prompt('Введите число больше 100:', '');
+
+        if (input === null) {
+          const confirmLeave = confirm('Вы уверены, что хотите перейти?');
+          if (confirmLeave) {
+            window.location.href = this.href;
+          }
+          return;
+        }
+
+        if (parseFloat(input) > 100) {
+          window.location.href = this.href;
+          return;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
