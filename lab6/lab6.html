@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №6 - Формы и элементы управления</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Формы и элементы управления</h1>
+    </header>
+    <main>
+        <section id="task1" class="task-card">
+            <h2>select</h2>
+            <div class="task-content">
+                <select id="musicGenre" class="styled-select">
+                    <option value="Rock">Рок</option>
+                    <option value="Blues" selected>Блюз</option>
+                </select>
+                <div id="selectOutput" class="output"></div>
+            </div>
+        </section>
+        <section id="task2" class="task-card">
+            <h2>Плейсхолдер-подсказка</h2>
+            <div class="task-content">
+                <div class="input-container">
+                    <input type="text" id="placeholderInput" data-placeholder="Введите текст" class="placeholder-input">
+                </div>
+            </div>
+        </section>
+        <section id="task3" class="task-card">
+            <h2>Редактируемый div</h2>
+            <div class="task-content">
+                <div id="editableDiv" class="editable-content">
+                    Нажмите Ctrl+E для редактирования этого текста.<br>
+                    Ctrl+S - сохранить, Esc - отмена.
+                </div>
+                <div class="hint">Используйте сочетания клавиш для редактирования</div>
+            </div>
+        </section>  
+        <section id="task4" class="task-card">
+            <h2>Редактируемая таблица</h2>
+            <div class="task-content">
+                <table id="editableTable" class="editable-table">
+                    <tr>
+                        <td>Ячейка 1</td>
+                        <td>Ячейка 2</td>
+                    </tr>
+                    <tr>
+                        <td>Ячейка 3</td>
+                        <td>Ячейка 4</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="task5" class="task-card">
+            <h2>Модальное окно с промптом</h2>
+            <div class="task-content">
+                <button id="showPromptBtn" class="primary-btn">Показать промпт</button>
+                <div id="promptResult" class="output"></div>
+            </div>
+        </section>
+    </main>
+    <div id="promptModal" class="modal-overlay">
+        <div class="modal-content">
+            <div id="promptMessage" class="modal-message"></div>
+            <input type="text" id="promptInput" class="modal-input">
+            <div class="modal-buttons">
+                <button id="promptCancelBtn" class="cancel-btn">ОТМЕНА</button>
+                <button id="promptOkBtn" class="confirm-btn">OK</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

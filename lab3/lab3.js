@@ -1,5 +1,4 @@
 'use strict'
-
 /**
  * Программа возвращает дробную часть числа
  * @param {number} num 
@@ -83,6 +82,20 @@ export function camelize(str) {
     }
     return strnew;
 }
+function fib(n) {
+    let a = BigInt(1);
+    let b = BigInt(1);
+    if (n == BigInt(0)) {
+        return BigInt(0);
+    }
+    else {
+        for (let i = BigInt(3); i <= n; i++) {
+           let c = a + b;
+            a = b;
+            b = c;
+        }
+        return b;
+    }}
 /**
  * Функция  возвращает массив, заполненный числами Фибоначчи до n-го (не включая его)
  * @param {number} n 
@@ -113,33 +126,4 @@ export function arrReverseSorted(arr) {
  */
 export function unique(arr) {
     return Array.from(new Set(arr));
-    function fib(n) {
-    let a = BigInt(1);
-    let b = BigInt(1);
-    if (n == BigInt(0)) {
-        return BigInt(0);
-    }
-    else {
-        for (let i = BigInt(3); i <= n; i++) {
-           let c = a + b;
-            a = b;
-            b = c;
-        }
-        return b;
-    }}
-
 }
-function fib(n) {
-    let a = BigInt(1);
-    let b = BigInt(1);
-    if (n == BigInt(0)) {
-        return BigInt(0);
-    }
-    else {
-        for (let i = BigInt(3); i <= n; i++) {
-           let c = a + b;
-            a = b;
-            b = c;
-        }
-        return b;
-    }}

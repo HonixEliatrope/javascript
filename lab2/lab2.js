@@ -1,17 +1,17 @@
 'use strict';
 /**
  * Возводит х в степень n 
- * @param {number} x основание степени
- * @param {number} n степень
- * @returns x  в степени n
+ * @param {number} x 
+ * @param {number} n 
+ * @returns 
  */
 function pow(x, n) {
     return x ** n;
 }
 /**
- * Возвращает сумму от 1 до n
- * @param {number} n максимальное число
- * @returns сумму от 1 до n
+ 
+ * @param {number} n 
+ * @returns 
  */
 function sumTo(n) {
     let sum = 0;
@@ -20,20 +20,18 @@ function sumTo(n) {
     }
     return sum;
 }
-/**Возвращает 
- * @param {number} n Високосный
- * @returns true или false
- */
-function isLeapYear(n){
-    if (n % 400 === 0 || n % 4 === 0 && n % 100 !==0) return true;
-    else {
-        return false
-    }
+/**
+ 
+ * @param {number} year
+ * @returns 
+ */ 
+function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
 }
 /**
  * Считает факториал числа n
- * @param {number} n основание факториала
- * @returns факториал  n
+ * @param {number} n 
+ * @returns 
  */
 function factorial(n) {
     if (n <= 1) return 1n;
@@ -42,9 +40,9 @@ function factorial(n) {
     }
 }
 /**
- * n-ый член ряда Фибоначчи
+ * 
  * @param {number} n 
- * @returns  n-ый член ряда Фибоначчи
+ * @returns  
  */
 function fib(n) {
     let a = BigInt(1);
@@ -62,9 +60,9 @@ function fib(n) {
     }
 }
 /**
- * Возвращает анонимную булеву функцию результата сравнения числа с x
- * @param {number} x число для сравнения
- * @returns возвращает анонимную булеву функцию результата сравнения числа с x
+ * 
+ * @param {number} x 
+ * @returns 
  */
 function compare(x) {
     return function (y) {
@@ -74,8 +72,8 @@ function compare(x) {
     }
 }
 /**
- * Сумма всех принятых аргументов функцией 
- * @returns сумму всех принятых аргументов функцией 
+ * 
+ * @returns 
  */
 function sum() {
     var result = 0;
@@ -85,11 +83,12 @@ function sum() {
     return result;
 }
 /**
- * @param {obj} объект для добавления blackSpot
- * @returns объект с добавленным символьным свойством 
- */
+ 
+ * @param {tring} obj
+ * @returns 
+ */ 
 function addBlackSpot(obj) {
-  const key = Symbol.for("blackSpot");
-  obj[key] = true;
+    const blackSpotSymbol = Symbol.for('blackSpot');
+    obj[blackSpotSymbol] = true;
   return obj;
 }
