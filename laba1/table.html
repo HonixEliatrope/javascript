@@ -1,0 +1,48 @@
+!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Таблица</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <form id="prosto">
+    <label>
+        Число строк:
+        <input type="number" id="rows" required>
+    </label>
+    <button type="submit">Рисовать</button>
+  </form>
+
+  <script>
+    'use strict';
+    let form = document.getElementById('prosto');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      drawTable(); 
+    });
+
+    function drawTable() {
+      const rows = parseInt(document.getElementById('rows').value, 10);
+
+      if (isNaN(rows) || rows <= 0) {
+        console.log('Введите положительное число строк');
+        return;
+      }
+
+      const sequence = ['dog', 'dog', 'dog', 'cat', 'cat'];
+      let index = 0;
+
+      for (let i = 0; i < rows; i++) {
+        let line = '';
+
+        for (let j = 0; j < 6; j++) {
+          line += sequence[index % sequence.length] + '\t';
+          index++;
+        }
+        console.log(line);
+      }
+    }
+  </script>
+</body>
+</html>
