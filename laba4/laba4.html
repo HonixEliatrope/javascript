@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Тестирование laba4</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.0.0/mocha.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/10.0.0/mocha.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.3.7/chai.min.js"></script>
+</head>
+<body>
+  
+  <div id="mocha"></div>
+  
+  <script type="module">
+    import { 
+      Book, 
+      isEmpty, 
+      obj, 
+      getSecondsToday, 
+      formatDate 
+    } from './laba4.js';
+    
+    mocha.setup('bdd');
+    const assert = chai.assert;
+    'use strict';
+    describe("Тесты для laba4", function() {
+      describe("Класс Book", function() {
+        it("Создание экземпляра и метод show", function() {
+          const book = new Book("Елки-палки", 2026, 3000);
+          assert.strictEqual(book.titLe, "Елки-палки");
+          assert.strictEqual(book.pubYear, 2026);
+        });
+       
+        it("Проверка сеттеров", function() {
+          const book = new Book("Палки-Елки", 2026, 3000);
+          assert.throws(() => { book.title = ""; }, Error);
+          assert.throws(() => { book.pubYear = -1; }, Error);
+          assert.throws(() => { book.price = -100; }, Error);
+        });
+                it("Статический метод compare", function() {
+          const books = [
+            new Book("Book 1", 2026, 800),
+            new Book("Book 2", 2025, 900),
+            new Book("Book 3", 2024, 1000)
+          ];
+          books.sort(Book.compare);
+          assert.strictEqual(books[0].pubYear, 2024);
+          assert.strictEqual(books[1].pubYear, 2025);
+          assert.strictEqual(books[2].pubYear, 2026);
+        });
+      });
+            describe("Функция isEmpty", function() {
+        it("Проверка пустого объекта", function() {
+          assert.isTrue(isEmpty({}));
+        });
+        
+        it("Проверка объекта с символьными свойствами", function() {
+          assert.isFalse(isEmpty({[Symbol()]: true}));
+        });
+        
+        it("Проверка объекта с неперечисляемыми свойствами", function() {
+          const obj = Object.defineProperty({}, 'name', { value: 'John' });
+          assert.isFalse(isEmpty(obj));
+        });
+      });
+      describe("Объект с методами addClass/removeClass", function() {
+        it("Добавление класса", function() {
+          const testObj = {...obj};
+          testObj.addClass('new');
+          assert.include(testObj.className, 'new');
+        });
+        
+        it("Удаление класса", function() {
+          const testObj = {...obj};
+          testObj.removeClass('open');
+          assert.notInclude(testObj.className, 'open');
+        });
+      });
+      describe("Функция getSecondsToday", function() {
+        it("Возвращает число секунд", function() {
+          const seconds = getSecondsToday();
+          assert.isNumber(seconds);
+          assert.isAtLeast(seconds, 0);
+        });
+      });
+      describe("Функция formatDate", function() {
+        it("Форматирует дату правильно", function() {
+          const date = new Date(2026, 5, 19);
+          assert.strictEqual(formatDate(date), "19.06.26");
+        });
+      });
+    });
+    
+    mocha.run();
+  </script>
+</body>
+</html>

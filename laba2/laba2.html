@@ -13,142 +13,124 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
     <script>
-
         let assert = chai.assert;
     </script>
 </head>
 
 <body>
+    <!-- Проверяем, загрузился ли laba2.js перед запуском тестов -->
     <script src="laba2.js"></script>
-
+    <script>
+        (function() {
+            const requiredFunctions = ['pow', 'sumTo', 'isLeapYear', 'factorial', 'fib', 'compare', 'sum', 'addBlackSpot'];
+            const missing = requiredFunctions.filter(fn => typeof window[fn] !== 'function');
+            if (missing.length) {
+                console.error('❌ Ошибка: в файле laba2.js не определены функции:', missing.join(', '));
+                document.body.innerHTML = `<div style="color:red; padding:20px; border:2px solid red; margin:20px;">
+                    <strong>Ошибка:</strong> файл <code>laba2.js</code> загружен, но в нём отсутствуют функции:<br>
+                    ${missing.join(', ')}<br><br>
+                    Проверьте, что вы экспортировали (объявили) их глобально.
+                </div>`;
+            } else {
+                console.log('✅ Все функции из laba2.js найдены, запуск тестов...');
+            }
+        })();
+    </script>
 
     <script>
         'use strict';
 
         describe("pow", function () {
-
             it("pow(2, 2) => 4", function () {
                 assert.strictEqual(pow(2, 2), 4);
             });
-
             it("pow(2, 0) => 1", function () {
                 assert.strictEqual(pow(2, 0), 1);
             });
-
             it("pow(2, -2) => 0.25", function () {
                 assert.strictEqual(pow(2, -2), 0.25);
             });
-
         });
 
         describe("sumTo", function () {
-
             it("sumTo(100) => 5050", function () {
                 assert.strictEqual(sumTo(100), 5050);
             });
-
         });
 
         describe("isLeapYear", function () {
-
             it("isLeapYear(2024) => true", function () {
                 assert.isTrue(isLeapYear(2024));
             });
-
             it("isLeapYear(2025) => false", function () {
                 assert.isFalse(isLeapYear(2025));
             });
-
             it("isLeapYear(2000) => true", function () {
                 assert.isTrue(isLeapYear(2000));
             });
-
             it("isLeapYear(1900) => false", function () {
                 assert.isFalse(isLeapYear(1900));
             });
-
         });
 
         describe("factorial", function () {
-
             it("factorial(0) => 1n", function () {
                 assert.strictEqual(factorial(0), 1n);
             });
-
             it("factorial(5) => 120n", function () {
                 assert.strictEqual(factorial(5), 120n);
             });
-
         });
 
         describe("fib", function () {
-
             it("fib(0) => 0n", function () {
                 assert.strictEqual(fib(0), 0n);
             });
-
             it("fib(100) => 354224848179261915075n", function () {
                 assert.strictEqual(fib(100), 354224848179261915075n);
             });
-
         });
 
         describe("compare", function () {
-
             it("compare(5)(4) => false", function () {
                 assert.isFalse(compare(5)(4));
             });
-
             it("compare(5)(5) => null", function () {
                 assert.isNull(compare(5)(5));
             });
-
             it("compare(5)(6) => true", function () {
                 assert.isTrue(compare(5)(6));
             });
-
         });
 
         describe("sum", function () {
-
             it("sum() => 0", function () {
                 assert.strictEqual(sum(), 0);
             });
-
             it("sum(1) => 1", function () {
                 assert.strictEqual(sum(1), 1);
             });
-
             it("sum(1, 2) => 3", function () {
                 assert.strictEqual(sum(1, 2), 3);
             });
-
         });
 
         describe("addBlackSpot", function () {
-
             it("addBlackSpot({}) => {[Symbol.for('blackSpot')]: true}", function () {
-                assert.deepEqual(addBlackSpot({}), {[Symbol.for('blackSpot')]: true});
+                assert.deepEqual(addBlackSpot({}), { [Symbol.for('blackSpot')]: true });
             });
-
-            it("addBlackSpot({obj) === obj", function () {
+            it("addBlackSpot(obj) === obj", function () {   // исправлено название (было "{obj)")
                 let obj = {};
                 assert.strictEqual(addBlackSpot(obj), obj);
             });
-
-            it("addBlackSpot(obj) has property Symbol.for('blackSpot')=true}", function () {
-                let blackSpot = Symbol.for("blackSpot");
+            it("addBlackSpot(obj) has property Symbol.for('blackSpot')=true", function () {
                 assert.propertyVal(addBlackSpot({}), Symbol.for("blackSpot"), true);
             });
-
         });
-
     </script>
 
-    
     <div id="mocha"></div>
 
-   
     <script>
         mocha.run();
     </script>
