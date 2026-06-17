@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,26 +9,22 @@
 		  margin: 10px auto;
 		  width: 470px;
 		}
-
 		h3 {
 		  margin: 0;
 		  padding-bottom: .3em;
 		  padding-right: 20px;
 		  font-size: 1.1em;
 		}
-
 		p {
 		  margin: 0;
 		  padding: 0 0 .5em;
 		}
-
 		.pane {
 		  background: #edf5e1;
 		  padding: 10px 20px 10px;
 		  border-top: solid 2px #c4df9b;
 		  position: relative;
 		}
-
 		.remove-button {
 		  position: absolute;
 		  font-size: 110%;
@@ -43,8 +40,7 @@
 	</style>
 </head>
 <body>
-	
-	<div id="messages-container">
+		<div id="messages-container">
 	    <div class="pane">
 	      <h3>Лошадь</h3>
 	      <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
@@ -63,14 +59,12 @@
 	      <button class="remove-button">[x]</button>
 	    </div>
 	</div>
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.remove-button');
-
     buttons.forEach(button => {
       button.addEventListener('click', () => {
-        button.closest('.pane').remove();
+        button.closest('.pane').style.display = 'none';
       });
     });
   });

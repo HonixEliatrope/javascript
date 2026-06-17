@@ -6,13 +6,10 @@
 </head>
 <body>
 	<input type="button" id="hider" value="Спрятать текст">
-
 	<div id="text">Текст</div>
-
 <script>
   const button = document.getElementById('hider');
   const text = document.getElementById('text');
-
   button.addEventListener('click', function () {
     if (text.style.display === 'none') {
       text.style.display = '';
@@ -23,7 +20,5 @@
     }
   });
 </script>
-
-
 </body>
 </html>
